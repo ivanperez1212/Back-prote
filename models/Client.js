@@ -6,16 +6,16 @@ const clienteSchema = new Schema({
         required: false,
         trim: true
     },
-    rfc:{
-        type: String,
-        required: false,
-        trim: true
-    },
-    correoelectronico:{
-        type: String,
-        required: false,
-        trim: true
-    },
+    // rfc:{
+    //     type: String,
+    //     required: false,
+    //     trim: true
+    // },
+    // correoelectronico:{
+    //     type: String,
+    //     required: false,
+    //     trim: true
+    // },
     servicio:{
         type: String,
         required: false,
@@ -26,11 +26,11 @@ const clienteSchema = new Schema({
         required: false,
         trim: true
     },
-    telefono:{
-        type: String,
-        required: false,
-        trim: true
-    },// datos de contacto directo
+    // telefono:{
+    //     type: String,
+    //     required: false,
+    //     trim: true
+    // },// datos de contacto directo
     cdnombre:{
         type: String,
         required: false,
@@ -97,6 +97,11 @@ const clienteSchema = new Schema({
         ref: 'Service'
        
     }],
+    regimenfiscal:{
+        type: String,
+        required: false,
+        trim: true
+    }, 
     activo:{
         type: Boolean,
         default: true

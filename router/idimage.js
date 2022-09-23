@@ -361,8 +361,7 @@ app.put('/idturnosaservicios/:id',  (req, res)  => {
 app.put('/idmultasaguardias/:id',  (req, res)  => {
   const id = req.params.id;
   const body = req.body;
-  
- console.log(body)
+
 image.findByIdAndUpdate(
       id,
       {

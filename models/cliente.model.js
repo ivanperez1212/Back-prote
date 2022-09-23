@@ -23,11 +23,11 @@ const clienteSchema =  new Schema ({
         required: false,
         trim: true
     },
-    telefono:{
-        type: String,
-        required: false,
-        trim: true
-    },// datos de contacto directo
+    // telefono:{
+    //     type: String,
+    //     required: false,
+    //     trim: true
+    // },// datos de contacto directo
     cdnombre:{
         type: String,
         required: false,
