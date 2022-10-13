@@ -1,4 +1,4 @@
-const Multas = require('./Multas.controller');
+const Multas = require('./multas.controller');
 
 module.exports = (router) => {
   router.put('/agregarmulta/:id',Multas.createmulta);

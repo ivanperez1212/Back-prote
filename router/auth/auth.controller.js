@@ -10,7 +10,8 @@ const _ = require("underscore");
 exports.createUser =  (req, res, next) => {
 
   const body = req.body;
-  
+  console.log(body)
+  const Puesto  = "Administrador";
   const newUser = {
    
     nombre: body.nombre,
@@ -21,31 +22,18 @@ exports.createUser =  (req, res, next) => {
     domicilio:body.domicilio,
     fechadeentrada:body.fechadeentrada,   
     fechadenacimiento:body.fechadenacimiento, 
-    telefono:body.telefono, 
-    telefonoadicional:body.telefonoadicional,
+    telefono:body.telefono,
+    correoelectronico:body.correoelectronico, 
     creditodeInfonavit:body.creditodeInfonavit, 
     estadocivil:body.estadocivil, 
-    correoelectronico:body.correoelectronico, 
-    cdeplayera:body.cdeplayera,
-    ddeplayera:body.ddeplayera,
-    cdepantalon:body.cdepantalon,
-    ddepantalon:body.ddepantalon,
-    cdebotas:body.cdebotas,
-    ddebotas:body.ddebotas,
-    cdecachucha:body.cdecachucha,
-    ddecachucha:body.ddecachucha,
-    cdechamarra:body.cdechamarra,
-    ddechamarra:body.ddechamarra,
-    cdechaleco:body.cdechaleco,
-    ddechaleco:body.ddechaleco,
-    cdelentes:body.cdelentes,
-    ddelentes:body.ddelentes,
     pensionado:body.pensionado, 
     niveldeescolaridad:body.niveldeescolaridad,
-    rol:body.rol,
-    contrasena: bcrypt.hashSync(body.contrasena),
+    rol:Puesto,
+    contrasena: bcrypt.hashSync(body.contrasena)
+  
  }
-
+  
+ console.log(newUser.contrasena)
   User.create(newUser, (err, user) => {
     
     if (err) return res.status(500).send('Server error' , err);
@@ -66,6 +54,71 @@ exports.createUser =  (req, res, next) => {
       fechadeentrada:user.fechadeentrada
     }
     // response 
+    console.log(dataUser)
+    res.send({ dataUser });
+    
+  });
+}
+exports.createUserGuardias =  (req, res, next) => {
+
+  const body = req.body;
+  const Puesto  = "Supervisor";
+  console.log(Puesto)
+  const newUser = {
+   
+    nombre: body.nombre,
+    apellidos:body.apellidos,
+    curp: body.curp, 
+    nsegurosocial: body.nsegurosocial,
+    rfc: body.rfc, 
+    domicilio:body.domicilio,
+    fechadeentrada:body.fechadeentrada,   
+    fechadenacimiento:body.fechadenacimiento, 
+    telefono:body.telefono,
+    correoelectronico:body.correoelectronico, 
+    // telefonoadicional:body.telefonoadicional,
+    creditodeInfonavit:body.creditodeInfonavit, 
+    estadocivil:body.estadocivil, 
+    cdeplayera:body.cdeplayera,
+    ddeplayera:body.ddeplayera,
+    cdepantalon:body.cdepantalon,
+    ddepantalon:body.ddepantalon,
+    cdebotas:body.cdebotas,
+    ddebotas:body.ddebotas,
+    cdecachucha:body.cdecachucha,
+    ddecachucha:body.ddecachucha,
+    cdechamarra:body.cdechamarra,
+    ddechamarra:body.ddechamarra,
+    cdechaleco:body.cdechaleco,
+    ddechaleco:body.ddechaleco,
+    cdelentes:body.cdelentes,
+    ddelentes:body.ddelentes,
+    pensionado:body.pensionado, 
+    niveldeescolaridad:body.niveldeescolaridad,
+    rol:Puesto
+ }
+  
+  User.create(newUser, (err, user) => {
+    
+    if (err) return res.status(500).send('Server error' , err);
+    
+    const expiresIn = 24 * 60 * 60;
+    const accessToken = jwt.sign({ id: user.id },
+      SECRET_KEY, {
+        expiresIn: expiresIn
+      });
+    const dataUser = {
+      id: user.id,
+      nombre: user.nombre,
+      correoelectronico: user.correoelectronico,
+      rol: user.rol,
+      accessToken: accessToken,
+      expiresIn: expiresIn,
+      idimage: user.idimage,
+      fechadeentrada:user.fechadeentrada
+    }
+    // response 
+    console.log(dataUser)
     res.send({ dataUser });
     
   });

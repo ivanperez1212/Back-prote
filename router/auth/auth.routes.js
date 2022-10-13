@@ -7,7 +7,6 @@ module.exports = (router) => {
   router.get('/obtener/:id',Users.obtenerUser);
   router.post('/olvidastecontrasena', Users.olvidasteContraseña);
   router.put('/crearcontrasena/:token', Users.createcontraseña);
-  // recuerda que este component esta compartiendo el metodo de crear usuario lo unico que cambia es el fron que manda el rol
-  router.post('/registerpersonal', Users.createUser);
+  router.post('/registerpersonal', Users.createUserGuardias);
 
 }
