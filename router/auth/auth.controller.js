@@ -62,7 +62,7 @@ exports.createUser =  (req, res, next) => {
 exports.createUserGuardias =  (req, res, next) => {
 
   const body = req.body;
-  const Puesto  = "Supervisor";
+  const Puesto  = "Guardia";
   console.log(Puesto)
   const newUser = {
    

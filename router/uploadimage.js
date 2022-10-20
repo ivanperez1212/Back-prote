@@ -15,7 +15,7 @@ router.post('/upload', uploader, async (req, res)=> {
         const newImage = new Image({
             fileName : body.name,
             fileUrl : `http://back.protexum.com.mx${process.env.PORT}/api/${file.filename}`
-            //fileUrl : `https://ionic-proyect.herokuapp.com/api/${file.filename}`
+           // fileUrl : `https://localhost/api/${file.filename}`
         })
        
         await newImage.save()
