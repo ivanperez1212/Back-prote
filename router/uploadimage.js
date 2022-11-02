@@ -14,8 +14,8 @@ router.post('/upload', uploader, async (req, res)=> {
      if(file && body ) {
         const newImage = new Image({
             fileName : body.name,
-           fileUrl : `http://back.protexum.com.mx${process.env.PORT}/api/${file.filename}`
-            //fileUrl : `http://localhost/api/${file.filename}`
+          // fileUrl : `http://back.protexum.com.mx${process.env.PORT}/api/${file.filename}`
+            fileUrl : `http://localhost/api/${file.filename}`
         })
        
         await newImage.save()
