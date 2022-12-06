@@ -40,9 +40,9 @@ app.get('/consultap/:id', (req, res) => {
 app.get('/consulta', (req, res) => {
   
 
-    image.find({$or:[
-        { 'activo': true}
-    ]}).populate({path:'Servicio',match:{$or:[ { 'activo': true}
+    image.find({$or:[{estatus:'ACTIVO'},{estatus:'ACTIVO y PENSIONADO'},{estatus:'REINGRESO'},
+    {estatus:'REINGRESO Y PENSIONADO'}]})
+   .populate({path:'Servicio',match:{$or:[ { 'activo': true}
   ]}})
         .exec((err, user) => {
             if (err) res.status(500).send( {message:`error al actualizar ${err} `} )

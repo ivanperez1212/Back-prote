@@ -139,11 +139,6 @@ const userSchema = new Schema({
     required: false,
     trim: true
   },
-  pensionado:{
-    type: String,
-    required: false,
-    trim: true
-  },
   niveldeescolaridad:{
     type: String,
     required: false,
@@ -161,8 +156,8 @@ const userSchema = new Schema({
     required: false,
     trim: true
   },
-  activo:{
-    type: Boolean,
+  estatus:{
+    type: String,
     default: true
   },
   fileUrl:{

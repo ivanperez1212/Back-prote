@@ -20,27 +20,13 @@ exports.createUser =  (req, res, next) => {
     nsegurosocial: body.nsegurosocial,
     rfc: body.rfc, 
     domicilio:body.domicilio,
+    estatus:body.estatus,
     fechadeentrada:body.fechadeentrada,   
     fechadenacimiento:body.fechadenacimiento, 
     telefono:body.telefono,
     correoelectronico:body.correoelectronico, 
-    // telefonoadicional:body.telefonoadicional,
     creditodeInfonavit:body.creditodeInfonavit, 
     estadocivil:body.estadocivil, 
-    // cdeplayera:body.cdeplayera,
-    // ddeplayera:body.ddeplayera,
-    // cdepantalon:body.cdepantalon,
-    // ddepantalon:body.ddepantalon,
-    // cdebotas:body.cdebotas,
-    // ddebotas:body.ddebotas,
-    // cdecachucha:body.cdecachucha,
-    // ddecachucha:body.ddecachucha,
-    // cdechamarra:body.cdechamarra,
-    // ddechamarra:body.ddechamarra,
-    // cdechaleco:body.cdechaleco,
-    // ddechaleco:body.ddechaleco,
-    // cdelentes:body.cdelentes,
-    // ddelentes:body.ddelentes,
     pensionado:body.pensionado, 
     niveldeescolaridad:body.niveldeescolaridad,
     rol:Puesto,
@@ -48,7 +34,7 @@ exports.createUser =  (req, res, next) => {
   
  }
   
- console.log(newUser.contrasena)
+ 
   User.create(newUser, (err, user) => {
     
     if (err) return res.status(500).send('Server error' , err);
@@ -77,7 +63,7 @@ exports.createUser =  (req, res, next) => {
 exports.createUserGuardias =  (req, res, next) => {
 
   const body = req.body;
-  const Puesto  = "Supervisor";
+  const Puesto  = "Guardia";
   console.log(Puesto)
   const newUser = {
    
@@ -87,6 +73,7 @@ exports.createUserGuardias =  (req, res, next) => {
     nsegurosocial: body.nsegurosocial,
     rfc: body.rfc, 
     domicilio:body.domicilio,
+    estatus:body.estatus,
     fechadeentrada:body.fechadeentrada,   
     fechadenacimiento:body.fechadenacimiento, 
     telefono:body.telefono,
@@ -268,7 +255,7 @@ console.log(body)
 exports.updateUser = (req, res, next) => {
   
   const idUsuario = req.params.id
- 
+   console.log(req.body)
   let body = _.pick(req.body, [
     'nombre',
     'apellidos',
@@ -297,10 +284,9 @@ exports.updateUser = (req, res, next) => {
     'ddelentes',
     'pensionado',
     'niveldeescolaridad',
-    'rol'
+    'rol',
+    'estatus'
   
-    
-
   ])
  
   
@@ -398,7 +384,7 @@ exports.deleteUser = (req, res) => {
   
 
   User.findByIdAndUpdate(idUsuario,{
-    activo: false
+    estatus: "Renuncio"
 
   },(err,user)=>{
     if (err) return res.status(500).send('Server error');
